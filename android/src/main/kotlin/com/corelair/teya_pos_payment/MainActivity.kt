@@ -1,4 +1,4 @@
-package eu.urbanticketing.hopon
+package com.corelair.teya_pos_payment
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
@@ -24,7 +24,7 @@ import org.json.JSONObject
 
 class MainActivity: FlutterActivity() {
 
-    private val CHANNEL = "eu.urbanticketing.hopon/payment"
+    private val CHANNEL = "teya_pos_payment/payment"
     lateinit var requestDispatcher: EposRequestDispatcherApi
     lateinit var requestId: String
 
@@ -124,26 +124,29 @@ class MainActivity: FlutterActivity() {
                         result.success(requestId)
                     }
                     "getStatus" -> {
-
-                        val cardPaymentOff = call.argument<Boolean>("card_payment_off") ?: false
-                        when (PayAppResponseListener.res) {
+                        when (val res = PayAppResponseListener.res) {
                             is SalePaymentResponse.Approved -> {
-                                Log.d("LOG", "GET STATUS RES")
-                                var resModel: ResponseModel? = PayAppResponseListener.res
-                                val res = mapOf(
-                                    "status" to "approved", 
-                                    "requestId" to resModel?.requestId?.toString()
+                                val map = mapOf(
+                                    "status" to "approved",
+                                    "requestId" to res.requestId?.toString(),
+                                    "amount" to res.amount.toString(),
+                                    "currency" to res.currency?.alphaCode
                                 )
-
-                                result.success(resModel.toString())
+                                result.success(map)
                             }
-                            is SalePaymentResponse.Failed -> result.success(PayAppResponseListener.res.toString())
+                            is SalePaymentResponse.Failed -> {
+                                val map = mapOf(
+                                    "status" to "failed",
+                                    "requestId" to res.requestId?.toString(),
+                                    "message" to res.toString()
+                                )
+                                result.success(map)
+                            }
                             else -> {
-                                result.success("-")
+                                result.success(mapOf("status" to "pending"))
                                 Log.d("LOG", "GET STATUS NULL")
                             }
                         }
-                        
                     }
                     else -> {
                         result.notImplemented()
