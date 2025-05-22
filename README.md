@@ -20,10 +20,10 @@ A Flutter plugin to seamlessly integrate with Teya POS terminals for on device p
 ## Features
 
 * List the key features of your project in bullet points.
-    * (e.g., "Initiate payments on Teya POS devices directly from your Flutter app.")
-    * (e.g., "Retrieve the status of the last payment transaction.")
-    * (e.g., "Supports configurable payment options like card-only or cash-only transactions.")
-    * (e.g., "Platform-agnostic (designed for Flutter, with Android implementation provided).")
+    * Initiate payments on Teya POS devices directly from your Flutter app.
+    * Retrieve the status of the last payment transaction.
+    * Supports configurable payment options like card-only or cash-only transactions.
+    * Platform-agnostic (designed for Flutter, with Android implementation provided).
 
 ---
 
@@ -35,34 +35,22 @@ A Flutter plugin to seamlessly integrate with Teya POS terminals for on device p
 
     ```yaml
     dependencies:
-      [your_package_name]: ^latest_version # e.g., teya_pos_payment: ^1.0.0
+      teya_pos_payment:
+        git:
+         url: https://github.com/CoreLair/teya_pos_payment.git
     ```
 
 2.  **Run `flutter pub get`** to fetch the package.
-
-### Android Specific Setup
-
-If your project requires platform-specific setup (like a Flutter plugin needing Android or iOS configurations):
-
-This plugin relies on the Teya (formerly SaltPay) ePOS integration library. You'll need to ensure your Android project is correctly configured to use their SDK. This typically involves:
-
-* **Adding necessary permissions** to your `android/app/src/main/AndroidManifest.xml` file. (Refer to Teya's official ePOS SDK documentation for exact requirements).
-* **Ensuring the minimum SDK version** in your `android/app/build.gradle` matches the ePOS SDK requirements (e.g., `minSdkVersion 21`).
-* **Any other specific setup** as per Teya's integration guide.
 
 ---
 
 ## Usage
 
-A clear, step-by-step guide on how to use your project. Provide code snippets.
-
 ### Initializing the Plugin (if applicable)
 
-If your plugin needs initialization, explain it here.
-
 ```dart
-// Example: No explicit initialization needed for TeyaPosPayment in Flutter
-// as it relies on static methods and Android setup.
+// Import package
+   import 'package:teya_pos_payment/teya_pos_payment.dart';
 ```
 
 ### [Specific Use Case 1: e.g., Starting a Payment]
@@ -137,8 +125,6 @@ Provide a quick reference to the main methods/classes. For more complex APIs, li
 ---
 
 ## Example
-
-Show a complete, runnable example, perhaps a simple Flutter screen.
 
 ```dart
 import 'package:flutter/material.dart';
@@ -284,5 +270,4 @@ This project is licensed under the [MIT License](LICENSE) - see the `LICENSE` fi
 
 If you encounter any issues or have questions, please feel free to:
 
-* Open an [issue](https://github.com/[YOUR_USERNAME]/[YOUR_REPO_NAME]/issues) on GitHub.
-* (Optional: Add a link to your email, Discord, or other support channels if applicable.)
+* Open an [issue](https://github.com/CoreLair/teya_pos_payment/issues) on GitHub.
