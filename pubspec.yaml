@@ -1,0 +1,18 @@
+
+name: teya_pos_payment
+description: Flutter plugin to initiate Teya/SaltPay terminal on-device payments.
+version: 0.1.0
+homepage: https://corelair.com
+environment:
+  sdk: ">=2.18.0 <4.0.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.corelair.teya_pos_payment
+        pluginClass: MainActivity
+
+dependencies:
+  flutter:
+    sdk: flutter
