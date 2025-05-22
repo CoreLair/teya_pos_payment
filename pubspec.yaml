@@ -11,7 +11,7 @@ flutter:
     platforms:
       android:
         package: com.corelair.teya_pos_payment
-        pluginClass: MainActivity
+        pluginClass: TeyaPosPaymentPlugin
 
 dependencies:
   flutter:
