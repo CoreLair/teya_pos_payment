@@ -15,6 +15,16 @@ import java.util.*
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import android.app.Application
 
+
+enum class TeyaCurrency(val alphaCode: String, val numericCode: String, val exponent: Int) {
+    HUF("HUF", "348", 2),
+    EUR("EUR", "978", 2),
+    USD("USD", "840", 2),
+    GBP("GBP", "826", 2),
+    JPY("JPY", "392", 0),
+    CHF("CHF", "756", 2);
+}
+
 class TeyaPosPaymentPluginImpl : FlutterPlugin, MethodCallHandler {
 
     private lateinit var channel: MethodChannel
@@ -52,6 +62,7 @@ class TeyaPosPaymentPluginImpl : FlutterPlugin, MethodCallHandler {
                 val billNumber = call.argument<String>("invoice_refs") ?: UUID.randomUUID().toString()
                 val uuid = call.argument<String>("uuid") ?: UUID.randomUUID().toString()
                 val cardPaymentOff = call.argument<Boolean>("card_payment_off") ?: false
+                val currencyArg = call.argument<String>("currency")?.uppercase() ?: "HUF"
 
                 requestDispatcher.request(
                     PayAppConfigRequest(
@@ -60,7 +71,14 @@ class TeyaPosPaymentPluginImpl : FlutterPlugin, MethodCallHandler {
                         allowPayAppTips = false
                     )
                 )
-
+                
+                val currencyEnum = try {
+                    TeyaCurrency.valueOf(currencyArg)
+                } catch (e: Exception) {
+                    TeyaCurrency.HUF
+                }
+                
+                val currency = Currency(currencyEnum.alphaCode, currencyEnum.numericCode, currencyEnum.exponent)
                 val requestModel = SalePayment(
                     requestId = uuid,
                     amount = BigDecimal.valueOf(amount),

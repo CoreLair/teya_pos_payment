@@ -1,5 +1,18 @@
 import 'package:flutter/services.dart';
 
+enum TeyaCurrency {
+  huf,
+  eur,
+  usd,
+  gbp,
+  jpy,
+  chf,
+}
+
+extension TeyaCurrencyExtension on TeyaCurrency {
+  String get name => toString().split('.').last;
+}
+
 class TeyaPosPayment {
   static const MethodChannel _channel =
       MethodChannel('teya_pos_payment/payment');
@@ -15,12 +28,14 @@ class TeyaPosPayment {
     required String uuid,
     required String invoiceRefs,
     bool cardPaymentOff = false,
+    TeyaCurrency? currency,
   }) async {
     final result = await _channel.invokeMethod('startPaymentFromJavaCode', {
       'amount': amount,
       'uuid': uuid,
       'invoice_refs': invoiceRefs,
       'card_payment_off': cardPaymentOff,
+      if (currency != null) 'currency': currency.name,
     });
 
     if (result is Map) {

@@ -68,6 +68,7 @@ Future<void> startTeyaPayment() async {
       amount: 1250.75, // Amount in HUF (e.g., 1250.75 Ft)
       uuid: transactionId, // A unique identifier for this transaction
       invoiceRefs: 'INV-2024-001-A', // Your invoice or reference number
+      currency: TeyaCurrency.eur, // Optional: Specify the currency (default is HUF)
       cardPaymentOff: false, // Set to true to disable card payments (cash only)
     );
     print('Payment initiation result: $result');
