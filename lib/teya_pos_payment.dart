@@ -4,7 +4,7 @@ class TeyaPosPayment {
   static const MethodChannel _channel =
       MethodChannel('teya_pos_payment/payment');
 
-  static Future<Map<String, dynamic>> start({
+  static Future<Map<String, dynamic>> startPayment({
     required double amount,
     required String uuid,
     required String invoiceRefs,
