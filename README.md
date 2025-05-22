@@ -46,7 +46,7 @@ A Flutter plugin to seamlessly integrate with Teya POS terminals for on device p
 
 ## Usage
 
-### Initializing the Plugin (if applicable)
+### Initializing the Plugin
 
 ```dart
 // Import package
