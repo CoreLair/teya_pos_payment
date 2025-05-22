@@ -13,7 +13,7 @@ import co.saltpay.epos.integrationlib.common.*
 import java.math.BigDecimal
 import java.util.*
 
-class TeyaPosPaymentPlugin: FlutterPlugin, MethodChannel.MethodCallHandler {
+class TeyaPosPaymentPlugin : FlutterPlugin, MethodCallHandler {
 
     private lateinit var channel: MethodChannel
     private lateinit var requestDispatcher: EposRequestDispatcherApi
