@@ -1,6 +1,6 @@
 # teya_pos_payment
 
-A concise and informative description of your project. What does it do? What problem does it solve? (e.g., "A Flutter plugin to seamlessly integrate with Teya POS terminals for in-app payments.")
+A Flutter plugin to seamlessly integrate with Teya POS terminals for on device payments.
 
 ---
 
